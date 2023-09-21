@@ -1,35 +1,40 @@
 function convertToRoman(num) {
-  const obj = {
-    0: ['M', 1000],
-    1: ['CM', 900],
-    2: ['D', 500],
-    3: ['CD', 400],
-    4: ['C', 100],
-    5: ['XC', 90],
-    6: ['L', 50],
-    7: ['XL', 40],
-    8: ['X', 10],
-    9: ['IX', 9],
-    10: ['V', 5],
-    11: ['IV', 4],
-    12: ['I', 1]
+  const romanNumerals = {
+    100000: "C̅",
+    90000: "X̅C̅",
+    50000: "L̅",
+    40000: "X̅L̅",
+    10000: "X̅",
+    9000: "I̅X̅",
+    5000: "V̅",
+    4000: "I̅V̅",
+    1000: "M",
+    900: "CM",
+    500: "D",
+    400: "CD",
+    100: "C",
+    90: "XC",
+    50: "L",
+    40: "XL",
+    10: "X",
+    9: "IX",
+    5: "V",
+    4: "IV",
+    1: "I",
   };
 
-  let roman = '';
-
-  for (let i = 0; i < Object.keys(obj).length; i++) {
-    const symbol = obj[i][0];
-    const value = obj[i][1];
-
+  let result = "";
+  for (let value in romanNumerals) {
     while (num >= value) {
-      roman += symbol;
+      result += romanNumerals[value];
       num -= value;
     }
   }
 
-  return roman;
+  return result;
 }
 
-// Test the function with an example
-console.log(convertToRoman(14)); // Output: "XIV"
-console.log(convertToRoman(798)); // Output: "DCCXCVIII"
+// Example usage:
+const input = 798;
+const romanNumeral = convertToRoman(input);
+console.log(romanNumeral); // Output: "DCCXCVIII"
